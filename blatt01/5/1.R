@@ -1,22 +1,37 @@
 #!/usr/bin/env Rscript
-input = read.table("points.dat", header=T)
-print(input)
+args = commandArgs(TRUE)
+
+if(file.access(args[1]) == -1 || file.access(args[1],mode = 4) == -1)
+{
+  print(paste(args[1]," is not a readable file!"))
+  quit();
+}
+input = read.table(args[1], header=T)
+
+if(length(unique(input$x)) != length(input$x))
+{
+  print("The input file has contradicting points")
+  quit()
+}
+#print(input)
 
 # (i)
 calc = function(x, y, n = 1)
 {
   if (length(y) == 1)
   {
-    return (y[1])
+    return (c(y[1]))
   }
   else
   {
     Y = c()
-    for(i in 1:(length(y)-n+1)) # TODO HÄÄÄÄ???
+    for(i in 1:(length(y)-1))
     {
-      Y = c(Y, (y[i+1] - y[i]) / (x[i+n] - x[i]))
+      newValue = (y[i+1] - y[i]) / (x[i+n] - x[i])
+      Y = append(Y,newValue)
     }
-    result = c(y[1], calc(x,Y,n+1))
+    
+    result = append(calc(x,Y,n+1), y[1], after=0)
     return (result)
   }
 
@@ -40,4 +55,4 @@ wert = function(x, X, Y)
   }
   return(result)
 }
-print (wert(4,input$x,input$y))
+print (wert(1,input$x,input$y))
