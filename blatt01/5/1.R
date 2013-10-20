@@ -1,4 +1,8 @@
 #!/usr/bin/env Rscript
+
+# args: input-file
+# out:  result-file
+
 args = commandArgs(TRUE)
 
 if(file.access(args[1]) == -1 || file.access(args[1],mode = 4) == -1)
@@ -37,22 +41,6 @@ calc = function(x, y, n = 1)
 
 }
 
-print (calc(input$x, input$y))
+result = data.frame("xi"=input$x, "cn"=calc(input$x, input$y))
+write.table (result, file="1.out", row.names = FALSE, col.names = T)
 
-# (ii)
-wert = function(x, X, Y)
-{
-  koeff = calc(X, Y)
-  X = x - X
-  X = cumprod(X)
-  result = 0
-  for(i in 1:length(koeff))
-  {
-    if(i==1)
-      result = result + koeff[i]
-    else
-      result = result + koeff[i] * X[i-1]
-  }
-  return(result)
-}
-print (wert(1,input$x,input$y))
