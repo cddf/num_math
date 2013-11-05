@@ -16,7 +16,8 @@ input = read.table(args[2], header=T)
 # function to plot
 f = function(x)
 {
-  return( (x-1)^2 )
+  #return( exp(x) )
+  return( 1/(1+25*x^2) )
 }
 
 # (ii)
@@ -39,13 +40,13 @@ write.table (pn, file="2.out", row.names = F, col.names = F)
 
 y = c()
 fi = c()
-for(i in -10:10)
+for(i in -100:100)
 {
-  y = append(y, wert(i,input$xi,input$cn))
-  fi = append(fi,f(i))
+  y = append(y, wert(i/100,input$xi,input$cn))
+  fi = append(fi,f(i/100))
 }
-  
-plot(-10:10, y, type="l")
+
+plot((-100:100)/100, y, type="l", xlab='x')
 points(x,pn)
 points(x,f(x))
-lines(-10:10, fi)
+lines((-100:100)/100, fi)
