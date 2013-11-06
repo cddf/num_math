@@ -16,8 +16,8 @@ input = read.table(args[2], header=T)
 # function to plot
 f = function(x)
 {
-  #return( exp(x) )
-  return( 1/(1+25*x^2) )
+  return( exp(x) )
+  #return( 1/(1+25*x^2) )
 }
 
 # (ii)
@@ -46,7 +46,7 @@ for(i in -100:100)
   fi = append(fi,f(i/100))
 }
 
-plot((-100:100)/100, y, type="l", xlab='x')
+plot((-100:100)/100, y, type="l", xlab='x', col = "red")
 points(x,pn)
 points(x,f(x))
-lines((-100:100)/100, fi)
+lines((-100:100)/100, fi, col = "blue")
