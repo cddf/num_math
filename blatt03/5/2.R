@@ -126,7 +126,21 @@ if(args[2] == 2)
 M
 d
 moments = solve(M, d)
-moments
+A = vector()
+B = vector()
+for(i in 1:length(moments))
+{
+  print(sprintf("moment[%d] = %f", (i-1), moments[i]))
+  if(i > 1)
+  {
+    A[i] = df(y,i) / df(x, i) - df(x, i) / 6 * (moments[i] - moments[i-1])
+    B[i] = y[i-1] - moments[i-1]*(df(x,i))^2/6
+
+    print(sprintf("A[%d] = %f", (i-1), A[i]))
+    print(sprintf("B[%d] = %f", (i-1), B[i]))
+  }
+}
+
 #print(input)
 
 
