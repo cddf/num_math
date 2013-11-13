@@ -17,20 +17,14 @@ if(length(unique(input$x)) != length(input$x))
   print("The input file has contradicting points")
   quit()
 }
-
-if(suppressWarnings(is.na(as.double(args[2]))))
-{
-  print("The second argument need to be a double")
-  quit()
-}
 n = length(input$x) - 2
-x = input$xi
-M = input$Mi
-A=vector()
+x = input$x
+y = input$y
 
-for(i in 2:(n+2))
+if(suppressWarnings(is.na(as.integer(args[2]))))
 {
-  #A[i] = df(x,i)
+  print("The second argument need to be an integer")
+  quit()
 }
 
 df = function(a, i)
@@ -38,11 +32,11 @@ df = function(a, i)
   return (a[i]-a[i-1])
 }
 
-for(i in 2:(n+2))
-{
-  #A[i] = df(x,i)
-}
+lambda = vector()
+my = vector()
+d = vector()
 
+x
 for(i in 2:(n+1))
 {
   lambda[i] = df(x,(i+1)) / (df(x, (i+1)) + df(x, i))
@@ -132,11 +126,26 @@ if(args[2] == 2)
 M
 d
 moments = solve(M, d)
-moments
+A = vector()
+B = vector()
+for(i in 1:length(moments))
+{
+  print(sprintf("moment[%d] = %f", (i-1), moments[i]))
+  if(i > 1)
+  {
+    A[i] = df(y,i) / df(x, i) - df(x, i) / 6 * (moments[i] - moments[i-1])
+    B[i] = y[i-1] - moments[i-1]*(df(x,i))^2/6
+
+    print(sprintf("A[%d] = %f", (i-1), A[i]))
+    print(sprintf("B[%d] = %f", (i-1), B[i]))
+  }
+}
+
+#print(input)
 
 
-output = paste(sub("(.+)[.][^.]+$", "\\1", basename(args[1])), "_Spline.out",sep="")
+output = paste(sub("(.+)[.][^.]+$", "\\1", basename(args[1])), ".out",sep="")
 
-#result = data.frame("xi"=input$x, "Mi"=moments)
-#write.table (result, file=output, row.names = FALSE, col.names = T)
+result = data.frame("xi"=input$x, "Mi"=moments)
+write.table (result, file=output, row.names = FALSE, col.names = T)
 
