@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript
 
-# args: input-file boundary_conditions boundary_conditions_args
+# args: input-file boundary_conditions [boundary_conditions_args]
+# boundary_conditions: 1 Natürlicher Spline; 2 Periodischer Spline; 3 Hermite Spline
+# boundary_conditions_args: bei 3: <Steigung a> <Steigung b>
 # out:  result-file
 
 args = commandArgs(TRUE)
@@ -146,6 +148,6 @@ for(i in 1:length(moments))
 
 output = paste(sub("(.+)[.][^.]+$", "\\1", basename(args[1])), ".out",sep="")
 
-result = data.frame("xi"=input$x, "Mi"=moments)
+result = data.frame("xi"=input$x, "Mi"=moments, "yi"=input$y)
 write.table (result, file=output, row.names = FALSE, col.names = T)
 
