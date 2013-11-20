@@ -128,6 +128,7 @@ if(args[2] == 2)
 M
 d
 moments = solve(M, d)
+moments[n+2] = moments[1]
 A = vector()
 B = vector()
 for(i in 1:length(moments))
