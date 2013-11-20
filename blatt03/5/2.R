@@ -29,8 +29,8 @@ for(i in 2:length(xi))
 f = function(x)
 {
   #return( exp(x) )
-  #return( 1/(1+25*x^2) )
-  return(x)
+  return( 1/(1+25*x^2) )
+  #return(x)
 }
 
 Si = function(xi, Mi, Ai, Bi, x)
@@ -52,7 +52,7 @@ Si = function(xi, Mi, Ai, Bi, x)
   }
   tmp =       Mi[i] * (x-xi[i-1])^3 / (6 * (xi[i]-xi[i-1]))
   tmp = tmp + Mi[i-1] * (xi[i]-x)^3 / (6 * (xi[i]-xi[i-1]))
-  S = tmp + Ai[i-1] * (x-xi[i-1]) + Bi[i-1]
+  S   = tmp + Ai[i-1] * (x-xi[i-1]) + Bi[i-1]
 
   return(S)
 }
@@ -71,5 +71,6 @@ for(i in (100*min):(100*max))
   fi = append(fi,f(X))
 }
 plot(((100*min):(100*max))/100, y, type="l", xlab='x', col = "red")
+lines(((100*min):(100*max))/100, abs(y-fi), type="l", xlab='x', col = "green")
 points(x,Sx)
 lines(((100*min):(100*max))/100, fi, col = "blue")

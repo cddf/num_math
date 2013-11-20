@@ -55,29 +55,39 @@ if(args[2] == 2)
     print("first and last value needs to have same y value")
     quit()
   }
-  lambda[n+2] = df(x,2)/(df(y,(n+2))+df(y, 2))
+  lambda[n+2] = df(x,2) / (df(x,(n+2)) + df(x, 2))
   my[n+2] = 1 - lambda[n+2]
-  d[n+2] = 6/(df(y,(n+2))+df(y,2))*(df(y,2)/df(x,2)-df(y,(n+2))/df(x,(n+2)))
+  d[n+2] = 6/(df(x,(n+2))+df(x,2)) * (df(y,2)/df(x,2) - df(y,(n+2))/df(x,(n+2)))
 
 
   for(i in 1:(n+1))
   {
-    if(i > 2)
+    if(i > 2 && i < (n+1))
     {
       M = append(M,rep(0,(i-2)))
     }
+    else if(i==(n+1))
+    {
+      M = append(M,lambda[n+2])
+      M = append(M,rep(0,(i-3)))
+    }
     if(i > 1)
     {
-      M = append(M,my[i])
+      M = append(M,my[i+1])
     }
     M = append(M,2)
     if(i<(n+1))
     {
       M = append(M,lambda[i+1])
     }
-    if(i<(n+1))
+    if(i<(n) && i > 1)
     {
       M = append(M,rep(0,(n-i)))
+    }
+    else if(i == 1)
+    {
+      M = append(M,rep(0,(n-i-1)))
+      M = append(M,my[2])
     }
   }
    
@@ -128,7 +138,10 @@ if(args[2] == 2)
 M
 d
 moments = solve(M, d)
-moments[n+2] = moments[1]
+if(args[2] == 2)
+{
+  moments = append(moments, moments[n+1], after=0)
+}
 A = vector()
 B = vector()
 for(i in 1:length(moments))
