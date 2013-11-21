@@ -1,0 +1,5 @@
+m=10;
+a=0;
+b=pi/2;
+f = expression(5*exp(2*x)*cos(x)/(e^PI-2));
+
