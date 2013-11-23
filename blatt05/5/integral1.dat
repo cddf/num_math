@@ -1,5 +1,35 @@
 m=10;
 a=0;
 b=pi/2;
-f = expression(5*exp(2*x)*cos(x)/(e^PI-2));
+c=5/(exp(pi)-2)
+f = expression(e^(2*x)*cos(x));
+exactResult=1
 
+derivations = vector();
+derivations[1]  = expression(    2*e^(2*x)*cos(x)-     1*e^(2*x)*sin(x));
+derivations[2]  = expression(    3*e^(2*x)*cos(x)-     4*e^(2*x)*sin(x));
+derivations[3]  = expression(    2*e^(2*x)*cos(x)-    11*e^(2*x)*sin(x));
+derivations[4]  = expression(   -7*e^(2*x)*cos(x)-    24*e^(2*x)*sin(x));
+derivations[5]  = expression(  -38*e^(2*x)*cos(x)-    41*e^(2*x)*sin(x));
+derivations[6]  = expression( -117*e^(2*x)*cos(x)-    44*e^(2*x)*sin(x));
+derivations[7]  = expression( -278*e^(2*x)*cos(x)+    29*e^(2*x)*sin(x));
+derivations[8]  = expression( -527*e^(2*x)*cos(x)+   336*e^(2*x)*sin(x));
+derivations[9]  = expression( -718*e^(2*x)*cos(x)+  1199*e^(2*x)*sin(x));
+derivations[10] = expression( -237*e^(2*x)*cos(x)+  3116*e^(2*x)*sin(x));
+
+
+derivations[11] = expression(     2642*e^(2*x)*cos(x)+     6469*e^(2*x)*sin(x));
+derivations[12] = expression(    11753*e^(2*x)*cos(x)+    10296*e^(2*x)*sin(x));
+derivations[13] = expression(    33802*e^(2*x)*cos(x)+     8839*e^(2*x)*sin(x));
+derivations[14] = expression(    76443*e^(2*x)*cos(x)-    16124*e^(2*x)*sin(x));
+derivations[15] = expression(   136762*e^(2*x)*cos(x)-   108691*e^(2*x)*sin(x));
+derivations[16] = expression(   164833*e^(2*x)*cos(x)-   354144*e^(2*x)*sin(x));
+derivations[17] = expression(   -24478*e^(2*x)*cos(x)-   873121*e^(2*x)*sin(x));
+derivations[18] = expression( -9220772*e^(2*x)*cos(x)-  1721764*e^(2*x)*sin(x));
+derivations[19] = expression( -3565918*e^(2*x)*cos(x)-  2521451*e^(2*x)*sin(x));
+derivations[20] = expression( -9653287*e^(2*x)*cos(x)-  1476984*e^(2*x)*sin(x));
+derivations[21] = expression(-20783558*e^(2*x)*cos(x)+  6699319*e^(2*x)*sin(x));
+derivations[22] = expression(-34867797*e^(2*x)*cos(x)+ 34182196*e^(2*x)*sin(x));
+derivations[23] = expression(-35553398*e^(2*x)*cos(x)+103232189*e^(2*x)*sin(x));
+derivations[24] = expression(321253932*e^(2*x)*cos(x)+242017776*e^(2*x)*sin(x));
+derivations[25] = expression(306268562*e^(2*x)*cos(x)+451910159*e^(2*x)*sin(x));

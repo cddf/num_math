@@ -1,0 +1,6 @@
+m=10;
+a=1e-154;
+b=1;
+c=1;
+f = expression(1/x^2*e^(-1/x));
+exactResult = exp(-1);
