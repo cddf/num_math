@@ -12,11 +12,11 @@ if(file.access(args[1]) == -1 || file.access(args[1],mode = 4) == -1)
 
 eval(parse(file = args[1]));
 
-rombergFolge = function(m) {
+rombergSequence = function(m) {
   return (2^(seq(0,m-1)))
 }
 
-bulirschFolge = function(m) {
+bulirschSequence = function(m) {
   seqHalflength = m/2;
   sequence = rep(2^seq(1,seqHalflength), each=2);
   sequence = sequence * rep(c(1,1.5), out.length=(2*seqHalflength));
@@ -90,11 +90,11 @@ return (S);
 rombergIntegration = function(f,a,b,n) {
 T=sumTrapez(f,a,b,n);
 
-plot(n,T, log = "x", main = paste(main," -  Trapezregel"));
+plot(n,T, log = "x", main = paste(main," -  trapezium rule"));
 
 S=sumSimpson(f,a,b,n);
 
-plot(n,S, log = "x", main = paste(main," -  Simpsonregel"));
+plot(n,S, log = "x", main = paste(main," -  Simpson's rule"));
 
 
 T[m+1] = T[1]
@@ -118,9 +118,9 @@ plot(1:length(T), abs(exactResult-T), log="y", xlab = "i", main = paste(main, " 
 }
 
 main = "Romberg sequence";
-rombergIntegration(f,a,b,rombergFolge(m))
+rombergIntegration(f,a,b,rombergSequence(m))
 main = "Bulirsch sequence";
-rombergIntegration(f,a,b,bulirschFolge(m))
+rombergIntegration(f,a,b,bulirschSequence(m))
 #result = data.frame("xi"=input$x, "Mi"=moments, "yi"=input$y)
 #write.table (result, file=output, row.names = FALSE, col.names = T)
 
