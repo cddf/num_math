@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# args: input-file
+# args: input-file polynomgrad
 # out:  result-file
 
 args = commandArgs(TRUE)
@@ -50,8 +50,6 @@ S_y_k = function(x,y,k)
 C <- matrix(data=NA, nrow=nPone, ncol=nPone);
 d <- rep(NA, nPone);
 
-
-
 for(i in 0:n)
 {
   C[(i+1),(i+1)] = S_k(x,i+i)
@@ -68,15 +66,15 @@ for(i in 0:n)
 
 L_C <- chol(C);
 
-
 s<-forwardsolve(t(L_C), d);
 t<-backsolve(L_C,s);
 
 t
 
-t2 = qr.solve(C,d);
+t2 = try(qr.solve(C,d));
 
 t2
+
 polynomSingle = function(x,a=t)
 {
   return (sum(a*x^(0:(length(t)-1))));
