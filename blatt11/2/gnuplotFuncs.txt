@@ -1,0 +1,6 @@
+(a)
+plot x**2+x-log(x)-2, x
+(b)
+plot sqrt(log(x)+2), x
+(c)
+plot exp(x**2-2), x
